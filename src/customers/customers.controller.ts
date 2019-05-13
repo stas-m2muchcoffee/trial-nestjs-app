@@ -1,7 +1,9 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put } from '@nestjs/common';
-import { CustomerDto } from './customer.dto';
-import { ICustomer } from './customer.interface';
 
+import { CreateCustomerDto } from './dto/create-customer.dto';
+import { UpdateCustomerDto } from './dto/update-customer.dto';
+
+import { ICustomer } from './customer.interface';
 import { CustomersService } from './customers.service';
 
 @Controller('customers')
@@ -18,7 +20,7 @@ export class CustomersController {
   }
 
   @Post()
-  createCustomer(@Body() newCustomer: CustomerDto): Promise<ICustomer> {
+  createCustomer(@Body() newCustomer: CreateCustomerDto): Promise<ICustomer> {
     return this.customersService.createCustomerInDb(newCustomer);
   }
 
@@ -30,7 +32,7 @@ export class CustomersController {
   @Put(':id')
   updateCustomer(
     @Param('id') id: string,
-    @Body() updateFields: CustomerDto
+    @Body() updateFields: UpdateCustomerDto,
   ): Promise<ICustomer> {
     return this.customersService.updateCustomerInDb(id, updateFields);
   }

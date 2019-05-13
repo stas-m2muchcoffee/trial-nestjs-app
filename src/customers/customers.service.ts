@@ -5,6 +5,9 @@ import { Model } from 'mongoose';
 
 import { ICustomer } from './customer.interface';
 
+import { CreateCustomerDto } from './dto/create-customer.dto';
+import { UpdateCustomerDto } from './dto/update-customer.dto';
+
 @Injectable()
 export class CustomersService {
   @InjectModel('Customer')
@@ -14,7 +17,7 @@ export class CustomersService {
     return this.customerModel.find({});
   }
 
-  createCustomerInDb(newCustomer: ICustomer): Promise<ICustomer> {
+  createCustomerInDb(newCustomer: CreateCustomerDto): Promise<ICustomer> {
     const newCustomerModel = new this.customerModel(newCustomer);
     return newCustomerModel.save();
   }
@@ -23,7 +26,7 @@ export class CustomersService {
     return this.customerModel.findById(id);
   }
 
-  updateCustomerInDb(id: string, updateFields: ICustomer): Promise<ICustomer> {
+  updateCustomerInDb(id: string, updateFields: UpdateCustomerDto): Promise<ICustomer> {
     return this.customerModel.findByIdAndUpdate(id, updateFields, { new: true });
   }
 
