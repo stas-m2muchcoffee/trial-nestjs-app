@@ -26,4 +26,12 @@ export class CustomersController {
   getCustomer(@Param('id') id: string): Promise<ICustomer> {
     return this.customersService.getCustomerFromDb(id);
   }
+
+  @Put(':id')
+  updateCustomer(
+    @Param('id') id: string,
+    @Body() updateFields: CustomerDto
+  ): Promise<ICustomer> {
+    return this.customersService.updateCustomerInDb(id, updateFields);
+  }
 }
