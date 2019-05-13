@@ -13,4 +13,9 @@ export class CustomersService {
   getCustomersFromDb(): Promise<ICustomer[]> {
     return this.customerModel.find({});
   }
+
+  createCustomerInDb(newCustomer: ICustomer): Promise<ICustomer> {
+    const newCustomerModel = new this.customerModel(newCustomer);
+    return newCustomerModel.save();
+  }
 }
