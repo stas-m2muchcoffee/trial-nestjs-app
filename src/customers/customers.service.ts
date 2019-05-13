@@ -26,4 +26,8 @@ export class CustomersService {
   updateCustomerInDb(id: string, updateFields: ICustomer): Promise<ICustomer> {
     return this.customerModel.findByIdAndUpdate(id, updateFields, { new: true });
   }
+
+  deleteCustomerInDb(id: string): Promise<ICustomer> {
+    return this.customerModel.findByIdAndDelete(id);
+  }
 }

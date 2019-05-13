@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put } from '@nestjs/common';
 import { CustomerDto } from './customer.dto';
 import { ICustomer } from './customer.interface';
 
@@ -33,5 +33,11 @@ export class CustomersController {
     @Body() updateFields: CustomerDto
   ): Promise<ICustomer> {
     return this.customersService.updateCustomerInDb(id, updateFields);
+  }
+
+  @Delete(':id')
+  @HttpCode(204)
+  deleteCustomer(@Param('id') id: string): Promise<ICustomer> {
+    return this.customersService.deleteCustomerInDb(id);
   }
 }
