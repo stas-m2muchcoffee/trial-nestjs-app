@@ -18,4 +18,8 @@ export class CustomersService {
     const newCustomerModel = new this.customerModel(newCustomer);
     return newCustomerModel.save();
   }
+
+  getCustomerFromDb(id: string): Promise<ICustomer> {
+    return this.customerModel.findById(id);
+  }
 }
