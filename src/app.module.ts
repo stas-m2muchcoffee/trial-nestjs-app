@@ -1,15 +1,15 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-
 import { CustomersModule } from './customers/customers.module';
+import { CoreModule } from './core/core.module';
 
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://localhost:27017/invoice-app-api', { useNewUrlParser: true }),
     CustomersModule,
+    CoreModule,
   ],
   controllers: [AppController],
   providers: [AppService],
