@@ -1,6 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UsePipes } from '@nestjs/common';
-
-import { ValidationPipe } from '../shared/pipes/validation.pipe';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put } from '@nestjs/common';
 
 import { CreateCustomerDto } from './dto/create-customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
@@ -22,7 +20,6 @@ export class CustomersController {
   }
 
   @Post()
-  @UsePipes(ValidationPipe)
   createCustomer(@Body() newCustomer: CreateCustomerDto): Promise<ICustomer> {
     return this.customersService.createCustomerInDb(newCustomer);
   }
